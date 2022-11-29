@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Category from '../../Category/Category';
 
 const Categories = () => {
 
@@ -29,7 +28,7 @@ const Categories = () => {
                                 <div className="card-body">
                                     <h2 className="card-title justify-center -mt-5">{category.name}</h2>
                                     <div className="card-actions justify-center -mb-2 mt-2">
-                                        <button className="btn btn-primary btn btn-sm center -m-2 rounded-none">VIEW</button>
+                                        <button className="btn btn-dark btn btn-sm center rounded-none -m-2 text-slate-50">VIEW</button>
                                     </div>
                                 </div>
                             </Link>
