@@ -24,14 +24,12 @@ const Categories = () => {
                             key={category._id}
                             className="card w-4/5 bg-base-100 shadow-xl">
                             <Link
-                                to={`/category/${category._id}`}
-                            >
-
+                                to={`/category/${category._id}`}>
                                 <figure className='rounded'><img className='h-48 w-full' src={category.img} alt="" /></figure>
                                 <div className="card-body">
-                                    <h2 className="card-title justify-center -mt-2">{category.name}</h2>
+                                    <h2 className="card-title justify-center -mt-5">{category.name}</h2>
                                     <div className="card-actions justify-center -mb-2 mt-2">
-                                        <button className="btn btn-primary center">Browse</button>
+                                        <button className="btn btn-primary btn btn-sm center -m-2 rounded-none">VIEW</button>
                                     </div>
                                 </div>
                             </Link>

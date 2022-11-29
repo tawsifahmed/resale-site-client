@@ -6,11 +6,14 @@ import './Main.css'
 
 const Main = () => {
     return (
-        <div>
-            <Navbar></Navbar>
-            <div className='outlet'>
-                <Outlet></Outlet>
+        <div >
+            <Navbar className='max-w-[1440px] mx-auto'></Navbar>
+            <div className='bg-slate-200'>
+                <div className='outlet max-w-[1440px] mx-auto'>
+                    <Outlet></Outlet>
+                </div>
             </div>
+
             <Footer></Footer>
         </div>
     );
