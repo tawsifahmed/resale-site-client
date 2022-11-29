@@ -33,6 +33,7 @@ const Category = () => {
                 bookProduct &&
                 <ProductBookingModal
                     bookProduct={bookProduct}
+                    setBookProduct={setBookProduct}
                 ></ProductBookingModal>}
 
         </div>
