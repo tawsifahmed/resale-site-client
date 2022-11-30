@@ -27,7 +27,6 @@ const Login = () => {
 
 
     const handleLogin = data => {
-        console.log(data);
         setSignInError('');
         signIn(data.email, data.password)
             .then(result => {
