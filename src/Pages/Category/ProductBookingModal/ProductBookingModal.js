@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const ProductBookingModal = ({ bookProduct, setBookProduct }) => {
-    const { title, sellingPrice } = bookProduct;
+    const { title, sellingPrice, image_url } = bookProduct;
     const { user } = useContext(AuthContext);
 
     const handleBooking = event => {
@@ -22,6 +22,7 @@ const ProductBookingModal = ({ bookProduct, setBookProduct }) => {
             email,
             phone,
             location,
+            img: image_url
         }
 
         fetch('http://localhost:4000/productsBookings', {
@@ -64,7 +65,7 @@ const ProductBookingModal = ({ bookProduct, setBookProduct }) => {
                         <label className="label -mt-2 -mb-5">
                             <span className="label-text">User Email</span>
                         </label>
-                        <input name="email" type="email" placeholder="Type email" disabled defaultValue={user?.email} className="input w-full h-9 input-bordered" />
+                        <input name="email" type="email" placeholder="Type email" disabled defaultValue={user?.email} className="input w-full h-9 input-bordered" required />
 
                         <label className="label -mt-2 -mb-5">
                             <span className="label-text">Phone Number</span>
