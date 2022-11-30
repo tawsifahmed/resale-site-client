@@ -25,7 +25,7 @@ const ProductBookingModal = ({ bookProduct, setBookProduct }) => {
             img: image_url
         }
 
-        fetch('http://localhost:4000/productsBookings', {
+        fetch('https://y-weld-five.vercel.app/productsBookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -46,7 +46,7 @@ const Register = () => {
 
     const getUser = (name, email) => {
         const user = { name, email };
-        fetch('http://localhost:4000/users', {
+        fetch('https://y-weld-five.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

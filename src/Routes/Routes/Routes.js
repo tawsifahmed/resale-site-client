@@ -34,7 +34,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute><Category></Category></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:4000/category/${params.id}`),
+                loader: ({ params }) => fetch(`https://y-weld-five.vercel.app/category/${params.id}`),
 
             },
             {
