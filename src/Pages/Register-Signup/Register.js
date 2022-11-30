@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/useToken';
+import GooglePop from '../Login/GooglePop';
 
 const Register = () => {
 
@@ -25,7 +26,6 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 toast('Account Created!')
                 const userInfo = {
                     displayName: data.name
@@ -103,9 +103,7 @@ const Register = () => {
                 </form>
                 <p className='text-center'>Already have an account? Then <Link className='text-primary' to={'/login'}>login here</Link> .</p>
                 <div className="divider px-5">OR</div>
-                <div className='flex justify-center items-center'>
-                    <button className='btn btn-dark'>SIGN IN WITH GOOGLE</button>
-                </div>
+                <GooglePop></GooglePop>
             </div>
 
         </div>

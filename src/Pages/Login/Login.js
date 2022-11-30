@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/useToken';
+import GooglePop from './GooglePop';
 
 const Login = () => {
 
@@ -16,9 +17,14 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/';
 
-    if (token) {
-        navigate(from, { replace: true });
-    }
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token])
+
+
 
     const handleLogin = data => {
         console.log(data);
@@ -71,9 +77,7 @@ const Login = () => {
                 </form>
                 <p className='text-center'>New to this site? Then <Link className='text-primary' to={'/register'}>create account</Link>.</p>
                 <div className="divider px-5">OR</div>
-                <div className='flex justify-center items-center'>
-                    <button className='btn btn-dark'>SIGN IN WITH GOOGLE</button>
-                </div>
+                <GooglePop></GooglePop>
             </div>
 
         </div>
