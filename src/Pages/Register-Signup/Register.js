@@ -1,23 +1,36 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Register = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
+    const [registerError, setRegisterError] = useState('');
 
     const handleRegister = data => {
         console.log(data);
+        setRegisterError('');
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                toast('Account Created!')
+                const userInfo = {
+                    displayName: data.name
+                }
+                updateUser(userInfo)
+                    .then(() => { })
+                    .catch(er => console.log(er));
 
                 // form.reset();
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+                setRegisterError(error.message)
+            });
     }
 
     return (
@@ -58,6 +71,7 @@ const Register = () => {
                     </div>
                     <br />
                     <input className='btn btn-dark text-white w-80' value="Register" type="submit" />
+                    {registerError && <p className='text-red-500'>{registerError}</p>}
                 </form>
                 <p className='text-center'>Already have an account? Then <Link className='text-primary' to={'/login'}>login here</Link> .</p>
                 <div className="divider px-5">OR</div>
