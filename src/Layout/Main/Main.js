@@ -10,11 +10,11 @@ const Main = () => {
             <Navbar className='max-w-[1440px] mx-auto'></Navbar>
             <div className='bg-slate-200'>
                 <div className='outlet max-w-[1440px] mx-auto'>
-                    <Outlet></Outlet>
+                    <Outlet className='bg-slate-200'></Outlet>
                 </div>
             </div>
 
-            <Footer></Footer>
+            <Footer className></Footer>
         </div>
     );
 };
