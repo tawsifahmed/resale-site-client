@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const ProductBookingModal = ({ bookProduct, setBookProduct }) => {
     const { title, sellingPrice } = bookProduct;
+    const { user } = useContext(AuthContext);
 
     const handleBooking = event => {
         event.preventDefault();
@@ -12,7 +15,7 @@ const ProductBookingModal = ({ bookProduct, setBookProduct }) => {
         const price = form.price.value
         const location = form.location.value;
 
-        const productsBooking = {
+        const productBooking = {
             itemName: title,
             price,
             name,
@@ -21,8 +24,22 @@ const ProductBookingModal = ({ bookProduct, setBookProduct }) => {
             location,
         }
 
-        console.log(productsBooking);
-        setBookProduct(null);
+        fetch('http://localhost:4000/productsBookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(productBooking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    setBookProduct(null);
+                    toast.success('Successfully Booked.')
+                }
+
+            })
     }
     return (
         <>
@@ -43,11 +60,11 @@ const ProductBookingModal = ({ bookProduct, setBookProduct }) => {
                         <label className="label -mt-2 -mb-5">
                             <span className="label-text">User Name</span>
                         </label>
-                        <input name="name" type="text" placeholder="Type your name" className="input w-full h-9 input-bordered" />
+                        <input name="name" type="text" placeholder="Type your name" disabled defaultValue={user?.displayName} className="input w-full h-9 input-bordered" />
                         <label className="label -mt-2 -mb-5">
                             <span className="label-text">User Email</span>
                         </label>
-                        <input name="email" type="email" placeholder="Type email" className="input w-full h-9 input-bordered" />
+                        <input name="email" type="email" placeholder="Type email" disabled defaultValue={user?.email} className="input w-full h-9 input-bordered" />
 
                         <label className="label -mt-2 -mb-5">
                             <span className="label-text">Phone Number</span>
