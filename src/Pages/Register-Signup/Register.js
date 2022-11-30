@@ -24,7 +24,7 @@ const Register = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        navigate('/')
+                        getUser(data.name, data.email);
                     })
                     .catch(er => console.log(er));
 
@@ -34,6 +34,22 @@ const Register = () => {
                 console.log(error)
                 setRegisterError(error.message)
             });
+    }
+
+    const getUser = (name, email) => {
+        const user = { name, email };
+        fetch('http://localhost:4000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('savedUser', data);
+                navigate('/');
+            })
     }
 
     return (
