@@ -28,4 +28,5 @@ Live Site: https://wonderful-sunshine-94ebdb.netlify.app/
 To check admin routes on the dashboard, use the given username and password below:
 
 adminEmail: admin@admin.com
+
 adminPassword: admin8989
